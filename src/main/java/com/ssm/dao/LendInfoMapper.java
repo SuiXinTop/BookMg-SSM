@@ -1,0 +1,17 @@
+package com.ssm.dao;
+
+import com.ssm.domain.LendInfo;
+
+public interface LendInfoMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(LendInfo record);
+
+    int insertSelective(LendInfo record);
+
+    LendInfo selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(LendInfo record);
+
+    int updateByPrimaryKey(LendInfo record);
+}
