@@ -1,0 +1,122 @@
+body {
+    background-image: url(images/11123.jpg);
+    background-repeat: no-repeat;
+    font-family: "幼圆", serif;
+    font-size: 16px;
+    line-height: normal;
+    font-weight: normal;
+    color: #FFFFFF;
+    background-attachment: fixed;
+    text-align: center;
+    background-size: cover;
+}
+
+p {
+    text-align: center;
+}
+
+label {
+    font-size: 110%;
+}
+
+div {
+    text-align: center;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.68);
+    width: 200px;
+    height: 30px;
+    border-style: double;
+    font-size: 110%;
+}
+
+form {
+    text-align: center;
+}
+
+a {
+    text-align: left;
+    color: #0a61c9;
+
+}
+
+a:hover {
+    cursor: pointer;
+    color: white;
+}
+
+iframe {
+    target: inherit;
+}
+
+.logic {
+    font-size: 60px;
+    text-align: center;
+}
+
+.combo {
+    width: 80px;
+    height: 30px;
+}
+
+.copyright {
+    text-align: center;
+    color: black;
+    font-family: "幼圆", serif;
+}
+
+.login {
+    width: 260px;
+    height: 40px;
+    font-family: "幼圆", serif;
+    background: rgba(255, 255, 255, 0.67);
+    border-radius: 100px;
+    border-style: groove;
+    font-size: 150%;
+}
+
+.login:hover {
+    cursor: pointer;
+    background: rgba(253, 213, 20, 0.68);
+}
+#contain{
+    text-align: center;
+/ / background: rgba(248, 245, 245, 0.67);
+    background: linear-gradient(90deg, rgba(21, 20, 21, 0.67), rgba(255, 254, 254, 0.67));
+    box-shadow: 0 0 8px rgb(10, 10, 10);
+    color: black;
+    width: 600px;
+    height: 600px;
+/ / float: left;
+    vertical-align: middle;
+    border-radius: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+#contain-off{
+    text-align: center;
+/ / background: rgba(248, 245, 245, 0.67);
+    background: linear-gradient(90deg, rgba(21, 20, 21, 0.67), rgba(255, 254, 254, 0.67));
+    box-shadow: 0 0 8px rgb(10, 10, 10);
+    color: black;
+    width: 600px;
+    height: 600px;
+/ / float: left;
+    vertical-align: middle;
+    border-radius: 100px;
+    margin: 0 auto;
+    display: none;
+}
+
+#foot {
+    background: linear-gradient(180deg, rgba(21, 20, 21, 0.67), rgba(255, 254, 254, 0.67));
+    color: black;
+    width: 100%;
+    height: 90px;
+/ / float: right;
+    border-radius: 100px;
+    margin: 0 auto;
+    font-size: larger;
+}
