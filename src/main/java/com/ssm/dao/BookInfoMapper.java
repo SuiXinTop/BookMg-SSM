@@ -3,13 +3,13 @@ package com.ssm.dao;
 import com.ssm.domain.BookInfo;
 
 public interface BookInfoMapper {
-    int deleteByPrimaryKey(Integer bookId);
+    int deleteByPrimaryKey(Integer bookid);
 
     int insert(BookInfo record);
 
     int insertSelective(BookInfo record);
 
-    BookInfo selectByPrimaryKey(Integer bookId);
+    BookInfo selectByPrimaryKey(Integer bookid);
 
     int updateByPrimaryKeySelective(BookInfo record);
 

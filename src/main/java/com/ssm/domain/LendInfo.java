@@ -3,13 +3,13 @@ package com.ssm.domain;
 public class LendInfo {
     private Integer id;
 
-    private String readerId;
+    private String readerid;
 
-    private Integer bookId;
+    private Integer bookid;
 
-    private String lendDate;
+    private String lenddate;
 
-    private String backDate;
+    private String backdate;
 
     private Double fine;
 
@@ -23,36 +23,36 @@ public class LendInfo {
         this.id = id;
     }
 
-    public String getReaderId() {
-        return readerId;
+    public String getReaderid() {
+        return readerid;
     }
 
-    public void setReaderId(String readerId) {
-        this.readerId = readerId == null ? null : readerId.trim();
+    public void setReaderid(String readerid) {
+        this.readerid = readerid == null ? null : readerid.trim();
     }
 
-    public Integer getBookId() {
-        return bookId;
+    public Integer getBookid() {
+        return bookid;
     }
 
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
+    public void setBookid(Integer bookid) {
+        this.bookid = bookid;
     }
 
-    public String getLendDate() {
-        return lendDate;
+    public String getLenddate() {
+        return lenddate;
     }
 
-    public void setLendDate(String lendDate) {
-        this.lendDate = lendDate == null ? null : lendDate.trim();
+    public void setLenddate(String lenddate) {
+        this.lenddate = lenddate == null ? null : lenddate.trim();
     }
 
-    public String getBackDate() {
-        return backDate;
+    public String getBackdate() {
+        return backdate;
     }
 
-    public void setBackDate(String backDate) {
-        this.backDate = backDate == null ? null : backDate.trim();
+    public void setBackdate(String backdate) {
+        this.backdate = backdate == null ? null : backdate.trim();
     }
 
     public Double getFine() {

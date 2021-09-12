@@ -1,9 +1,9 @@
 package com.ssm.domain;
 
-public class UserInfo {
+public class ReaderInfo {
     private Integer id;
 
-    private String readerId;
+    private String readerid;
 
     private String name;
 
@@ -17,7 +17,7 @@ public class UserInfo {
 
     private String telephone;
 
-    private Integer cardState;
+    private Integer cardstate;
 
     public Integer getId() {
         return id;
@@ -27,12 +27,12 @@ public class UserInfo {
         this.id = id;
     }
 
-    public String getReaderId() {
-        return readerId;
+    public String getReaderid() {
+        return readerid;
     }
 
-    public void setReaderId(String readerId) {
-        this.readerId = readerId == null ? null : readerId.trim();
+    public void setReaderid(String readerid) {
+        this.readerid = readerid == null ? null : readerid.trim();
     }
 
     public String getName() {
@@ -83,11 +83,11 @@ public class UserInfo {
         this.telephone = telephone == null ? null : telephone.trim();
     }
 
-    public Integer getCardState() {
-        return cardState;
+    public Integer getCardstate() {
+        return cardstate;
     }
 
-    public void setCardState(Integer cardState) {
-        this.cardState = cardState;
+    public void setCardstate(Integer cardstate) {
+        this.cardstate = cardstate;
     }
 }

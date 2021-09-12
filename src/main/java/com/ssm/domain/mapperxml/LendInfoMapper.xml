@@ -3,51 +3,51 @@
 <mapper namespace="com.ssm.dao.LendInfoMapper">
   <resultMap id="BaseResultMap" type="com.ssm.domain.LendInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="reader_id" jdbcType="VARCHAR" property="readerId" />
-    <result column="book_id" jdbcType="INTEGER" property="bookId" />
-    <result column="lend_date" jdbcType="VARCHAR" property="lendDate" />
-    <result column="back_date" jdbcType="VARCHAR" property="backDate" />
+    <result column="readerid" jdbcType="VARCHAR" property="readerid" />
+    <result column="bookid" jdbcType="INTEGER" property="bookid" />
+    <result column="lenddate" jdbcType="VARCHAR" property="lenddate" />
+    <result column="backdate" jdbcType="VARCHAR" property="backdate" />
     <result column="fine" jdbcType="DOUBLE" property="fine" />
     <result column="state" jdbcType="VARCHAR" property="state" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, reader_id, book_id, lend_date, back_date, fine, state
+    id, readerid, bookid, lenddate, backdate, fine, state
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from lend_list
+    from lendlist
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from lend_list
+    delete from lendlist
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ssm.domain.LendInfo">
-    insert into lend_list (id, reader_id, book_id, 
-      lend_date, back_date, fine, 
+    insert into lendlist (id, readerid, bookid, 
+      lenddate, backdate, fine, 
       state)
-    values (#{id,jdbcType=INTEGER}, #{readerId,jdbcType=VARCHAR}, #{bookId,jdbcType=INTEGER}, 
-      #{lendDate,jdbcType=VARCHAR}, #{backDate,jdbcType=VARCHAR}, #{fine,jdbcType=DOUBLE}, 
+    values (#{id,jdbcType=INTEGER}, #{readerid,jdbcType=VARCHAR}, #{bookid,jdbcType=INTEGER}, 
+      #{lenddate,jdbcType=VARCHAR}, #{backdate,jdbcType=VARCHAR}, #{fine,jdbcType=DOUBLE}, 
       #{state,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ssm.domain.LendInfo">
-    insert into lend_list
+    insert into lendlist
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="readerId != null">
-        reader_id,
+      <if test="readerid != null">
+        readerid,
       </if>
-      <if test="bookId != null">
-        book_id,
+      <if test="bookid != null">
+        bookid,
       </if>
-      <if test="lendDate != null">
-        lend_date,
+      <if test="lenddate != null">
+        lenddate,
       </if>
-      <if test="backDate != null">
-        back_date,
+      <if test="backdate != null">
+        backdate,
       </if>
       <if test="fine != null">
         fine,
@@ -60,17 +60,17 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="readerId != null">
-        #{readerId,jdbcType=VARCHAR},
+      <if test="readerid != null">
+        #{readerid,jdbcType=VARCHAR},
       </if>
-      <if test="bookId != null">
-        #{bookId,jdbcType=INTEGER},
+      <if test="bookid != null">
+        #{bookid,jdbcType=INTEGER},
       </if>
-      <if test="lendDate != null">
-        #{lendDate,jdbcType=VARCHAR},
+      <if test="lenddate != null">
+        #{lenddate,jdbcType=VARCHAR},
       </if>
-      <if test="backDate != null">
-        #{backDate,jdbcType=VARCHAR},
+      <if test="backdate != null">
+        #{backdate,jdbcType=VARCHAR},
       </if>
       <if test="fine != null">
         #{fine,jdbcType=DOUBLE},
@@ -81,19 +81,19 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.LendInfo">
-    update lend_list
+    update lendlist
     <set>
-      <if test="readerId != null">
-        reader_id = #{readerId,jdbcType=VARCHAR},
+      <if test="readerid != null">
+        readerid = #{readerid,jdbcType=VARCHAR},
       </if>
-      <if test="bookId != null">
-        book_id = #{bookId,jdbcType=INTEGER},
+      <if test="bookid != null">
+        bookid = #{bookid,jdbcType=INTEGER},
       </if>
-      <if test="lendDate != null">
-        lend_date = #{lendDate,jdbcType=VARCHAR},
+      <if test="lenddate != null">
+        lenddate = #{lenddate,jdbcType=VARCHAR},
       </if>
-      <if test="backDate != null">
-        back_date = #{backDate,jdbcType=VARCHAR},
+      <if test="backdate != null">
+        backdate = #{backdate,jdbcType=VARCHAR},
       </if>
       <if test="fine != null">
         fine = #{fine,jdbcType=DOUBLE},
@@ -105,11 +105,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ssm.domain.LendInfo">
-    update lend_list
-    set reader_id = #{readerId,jdbcType=VARCHAR},
-      book_id = #{bookId,jdbcType=INTEGER},
-      lend_date = #{lendDate,jdbcType=VARCHAR},
-      back_date = #{backDate,jdbcType=VARCHAR},
+    update lendlist
+    set readerid = #{readerid,jdbcType=VARCHAR},
+      bookid = #{bookid,jdbcType=INTEGER},
+      lenddate = #{lenddate,jdbcType=VARCHAR},
+      backdate = #{backdate,jdbcType=VARCHAR},
       fine = #{fine,jdbcType=DOUBLE},
       state = #{state,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

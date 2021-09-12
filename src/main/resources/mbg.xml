@@ -48,34 +48,34 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false"
-               tableName="admin" domainObjectName="Admin"/>
+               tableName="admininfo" domainObjectName="AdminInfo"/>
         <table schema=""
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false"
-               tableName="class_info" domainObjectName="ClassInfo"/>
+               tableName="classinfo" domainObjectName="ClassInfo"/>
         <table schema=""
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false"
-               tableName="book_info" domainObjectName="BookInfo"/>
+               tableName="bookinfo" domainObjectName="BookInfo"/>
         <table schema=""
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false"
-               tableName="lend_list" domainObjectName="LendInfo"/>
+               tableName="lendlist" domainObjectName="LendInfo"/>
         <table schema=""
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false"
-               tableName="reader_info" domainObjectName="UserInfo"/>
+               tableName="readerinfo" domainObjectName="ReaderInfo"/>
     </context>
 </generatorConfiguration>

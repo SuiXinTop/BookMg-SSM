@@ -14,8 +14,6 @@
   <script src="${pageContext.request.contextPath}/static/js/mybook.js" rel="script" type="text/javascript"></script>
 </head>
 <body>
-<div>
-</div>
 <div id="contain">
   <br/><br/><br/><br/><br/>
   <label class="logic">登录窗口</label>

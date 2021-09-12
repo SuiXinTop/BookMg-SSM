@@ -1,7 +1,7 @@
 package com.ssm.domain;
 
 public class BookInfo {
-    private Integer bookId;
+    private Integer bookid;
 
     private String name;
 
@@ -23,12 +23,12 @@ public class BookInfo {
 
     private Integer stock;
 
-    public Integer getBookId() {
-        return bookId;
+    public Integer getBookid() {
+        return bookid;
     }
 
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
+    public void setBookid(Integer bookid) {
+        this.bookid = bookid;
     }
 
     public String getName() {
