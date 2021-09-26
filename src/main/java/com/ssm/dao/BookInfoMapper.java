@@ -2,6 +2,8 @@ package com.ssm.dao;
 
 import com.ssm.domain.BookInfo;
 
+import java.util.List;
+
 public interface BookInfoMapper {
     int deleteByPrimaryKey(Integer bookId);
 

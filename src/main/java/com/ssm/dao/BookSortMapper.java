@@ -2,6 +2,8 @@ package com.ssm.dao;
 
 import com.ssm.domain.BookSort;
 
+import java.util.List;
+
 public interface BookSortMapper {
     int deleteByPrimaryKey(Integer sortId);
 
@@ -10,6 +12,8 @@ public interface BookSortMapper {
     int insertSelective(BookSort record);
 
     BookSort selectByPrimaryKey(Integer sortId);
+
+    List<BookSort> selectAll();
 
     int updateByPrimaryKeySelective(BookSort record);
 

@@ -19,14 +19,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer login(UserTable userTable){
+    public Integer login(UserTable userTable) {
         userTable.setUserPassword(SecurityUtil.getMd5(userTable.getUserPassword()));
         return userTableMapper.selectByAll(userTable);
     }
 
     @Override
-    public Integer register(UserTable userTable){
+    public Integer register(UserTable userTable) {
         userTable.setUserPassword(SecurityUtil.getMd5(userTable.getUserPassword()));
         return userTableMapper.insert(userTable);
+    }
+
+    @Override
+    public UserTable selectInfo(Integer userId) {
+        return userTableMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public Integer updateInfo(UserTable userTable) {
+        return userTableMapper.updateByPrimaryKeySelective(userTable);
+    }
+
+    @Override
+    public Integer updatePassword(UserTable userTable) {
+        userTable.setUserPassword(SecurityUtil.getMd5(userTable.getUserPassword()));
+        return userTableMapper.updateByPrimaryKeySelective(userTable);
     }
 }

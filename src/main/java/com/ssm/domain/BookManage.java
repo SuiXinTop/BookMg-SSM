@@ -1,11 +1,12 @@
 package com.ssm.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author STARS
  */
-public class BookManage {
+public class BookManage implements Serializable {
     private Integer id;
 
     private Integer userId;
@@ -19,6 +20,19 @@ public class BookManage {
     private Date excDate;
 
     private String bookTf;
+
+    public BookManage() {
+    }
+
+    public BookManage(Integer id, Integer userId, Integer bookId, Date borrDate, Date facDate, Date excDate, String bookTf) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.borrDate = borrDate;
+        this.facDate = facDate;
+        this.excDate = excDate;
+        this.bookTf = bookTf;
+    }
 
     public Integer getId() {
         return id;

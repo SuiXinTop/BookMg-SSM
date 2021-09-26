@@ -1,6 +1,5 @@
 package com.ssm.controller;
 
-import com.ssm.dao.UserTableMapper;
 import com.ssm.domain.UserTable;
 import com.ssm.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -33,11 +32,24 @@ public class UserController {
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
-    public  Object register(@RequestBody UserTable userTable){
+    public Object register(@RequestBody UserTable userTable){
         int t=userService.register(userTable);
         if(t==0){
             return false;
         }
         return userTable.getUserId();
+    }
+    @RequestMapping(value = "/user/updateInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateInfo(@RequestBody UserTable userTable){
+        int t=userService.updateInfo(userTable);
+        return t != 0;
+    }
+
+    @RequestMapping(value = "/user/updatePassword",method = RequestMethod.POST)
+    @ResponseBody
+    public Object updatePassword(@RequestBody UserTable userTable){
+        int t=userService.updatePassword(userTable);
+        return t != 0;
     }
 }

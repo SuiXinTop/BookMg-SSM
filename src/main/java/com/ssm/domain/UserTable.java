@@ -20,6 +20,24 @@ public class UserTable implements Serializable {
 
     private String userStatus;
 
+    public UserTable() {
+    }
+
+    public UserTable(Integer userId, String userPassword) {
+        this.userId = userId;
+        this.userPassword = userPassword;
+    }
+
+    public UserTable(Integer userId, String userName, String userSex, Integer userAge, String userPhone, String userPassword, String userStatus) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userSex = userSex;
+        this.userAge = userAge;
+        this.userPhone = userPhone;
+        this.userPassword = userPassword;
+        this.userStatus = userStatus;
+    }
+
     public Integer getUserId() {
         return userId;
     }

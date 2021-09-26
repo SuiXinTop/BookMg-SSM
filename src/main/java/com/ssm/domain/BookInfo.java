@@ -1,11 +1,12 @@
 package com.ssm.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author STARS
  */
-public class BookInfo {
+public class BookInfo implements Serializable {
     private Integer bookId;
 
     private String bookIsbn;
@@ -23,6 +24,21 @@ public class BookInfo {
     private Date bookRecord;
 
     private String bookDescribe;
+
+    public BookInfo() {
+    }
+
+    public BookInfo(Integer bookId, String bookIsbn, String bookName, String bookAuthor, String bookPub, Integer bookStock, Integer bookSort, Date bookRecord, String bookDescribe) {
+        this.bookId = bookId;
+        this.bookIsbn = bookIsbn;
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookPub = bookPub;
+        this.bookStock = bookStock;
+        this.bookSort = bookSort;
+        this.bookRecord = bookRecord;
+        this.bookDescribe = bookDescribe;
+    }
 
     public Integer getBookId() {
         return bookId;

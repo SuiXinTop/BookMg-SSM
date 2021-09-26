@@ -1,14 +1,19 @@
 package com.ssm.domain;
 
+import java.io.Serializable;
+
 /**
  * @author STARS
  */
-public class BookSort {
+public class BookSort implements Serializable {
     private Integer sortId;
 
     private String sortName;
 
     private String sortText;
+
+    public BookSort() {
+    }
 
     public BookSort(Integer sortId, String sortName, String sortText) {
         this.sortId = sortId;

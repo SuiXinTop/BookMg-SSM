@@ -3,7 +3,7 @@ package com.ssm.util;
 import org.springframework.util.DigestUtils;
 
 /**
- * @author xxx
+ * @author STAR
  * @create 2021-09-10
  */
 public class SecurityUtil {
