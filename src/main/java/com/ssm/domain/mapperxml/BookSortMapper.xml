@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.BookSortMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.domain.BookSort">
+    <id column="sort_id" jdbcType="INTEGER" property="sortId" />
+    <result column="sort_name" jdbcType="VARCHAR" property="sortName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ssm.domain.BookSort">
+    <result column="sort_text" jdbcType="LONGVARCHAR" property="sortText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sort_id, sort_name
+  </sql>
+  <sql id="Blob_Column_List">
+    sort_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from book_sort
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book_sort
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.domain.BookSort">
+    insert into book_sort (sort_id, sort_name, sort_text
+      )
+    values (#{sortId,jdbcType=INTEGER}, #{sortName,jdbcType=VARCHAR}, #{sortText,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.domain.BookSort">
+    insert into book_sort
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sortId != null">
+        sort_id,
+      </if>
+      <if test="sortName != null">
+        sort_name,
+      </if>
+      <if test="sortText != null">
+        sort_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sortId != null">
+        #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="sortName != null">
+        #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortText != null">
+        #{sortText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.BookSort">
+    update book_sort
+    <set>
+      <if test="sortName != null">
+        sort_name = #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortText != null">
+        sort_text = #{sortText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssm.domain.BookSort">
+    update book_sort
+    set sort_name = #{sortName,jdbcType=VARCHAR},
+      sort_text = #{sortText,jdbcType=LONGVARCHAR}
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.BookSort">
+    update book_sort
+    set sort_name = #{sortName,jdbcType=VARCHAR}
+    where sort_id = #{sortId,jdbcType=INTEGER}
+  </update>
+</mapper>

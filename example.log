@@ -145,3 +145,14 @@ DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column
 DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_status", data type 12, in table "bookmgr..usertable"
 DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "id", data type -3, in table "ssm..usertable"
 DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "password", data type 12, in table "ssm..usertable"
+DEBUG main org.mybatis.generator.logging.LogFactory - Logging initialized using 'org.mybatis.generator.logging.slf4j.Slf4jLoggingLogFactory@6aa61224' adapter.
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Retrieving column information for table "userInfo"
+DEBUG main org.mybatis.generator.logging.LogFactory - Logging initialized using 'org.mybatis.generator.logging.slf4j.Slf4jLoggingLogFactory@6aa61224' adapter.
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Retrieving column information for table "userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_id", data type 4, in table "bookmgr..userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_name", data type 12, in table "bookmgr..userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_sex", data type 12, in table "bookmgr..userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_age", data type 4, in table "bookmgr..userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_phone", data type 12, in table "bookmgr..userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_password", data type 12, in table "bookmgr..userinfo"
+DEBUG main org.mybatis.generator.internal.db.DatabaseIntrospector - Found column "user_status", data type 12, in table "bookmgr..userinfo"

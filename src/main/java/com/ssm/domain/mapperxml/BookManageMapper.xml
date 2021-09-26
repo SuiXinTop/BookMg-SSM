@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.BookManageMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.domain.BookManage">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="borr_date" jdbcType="TIMESTAMP" property="borrDate" />
+    <result column="fac_date" jdbcType="TIMESTAMP" property="facDate" />
+    <result column="exc_date" jdbcType="TIMESTAMP" property="excDate" />
+    <result column="book_tf" jdbcType="VARCHAR" property="bookTf" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, book_id, borr_date, fac_date, exc_date, book_tf
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_br
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book_br
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.domain.BookManage">
+    insert into book_br (id, user_id, book_id, 
+      borr_date, fac_date, exc_date, 
+      book_tf)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
+      #{borrDate,jdbcType=TIMESTAMP}, #{facDate,jdbcType=TIMESTAMP}, #{excDate,jdbcType=TIMESTAMP}, 
+      #{bookTf,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.domain.BookManage">
+    insert into book_br
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="borrDate != null">
+        borr_date,
+      </if>
+      <if test="facDate != null">
+        fac_date,
+      </if>
+      <if test="excDate != null">
+        exc_date,
+      </if>
+      <if test="bookTf != null">
+        book_tf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="borrDate != null">
+        #{borrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facDate != null">
+        #{facDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="excDate != null">
+        #{excDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookTf != null">
+        #{bookTf,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.BookManage">
+    update book_br
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="borrDate != null">
+        borr_date = #{borrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facDate != null">
+        fac_date = #{facDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="excDate != null">
+        exc_date = #{excDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookTf != null">
+        book_tf = #{bookTf,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.BookManage">
+    update book_br
+    set user_id = #{userId,jdbcType=INTEGER},
+      book_id = #{bookId,jdbcType=INTEGER},
+      borr_date = #{borrDate,jdbcType=TIMESTAMP},
+      fac_date = #{facDate,jdbcType=TIMESTAMP},
+      exc_date = #{excDate,jdbcType=TIMESTAMP},
+      book_tf = #{bookTf,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

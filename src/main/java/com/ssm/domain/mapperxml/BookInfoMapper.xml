@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.BookInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.domain.BookInfo">
+    <id column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="book_isbn" jdbcType="VARCHAR" property="bookIsbn" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="book_author" jdbcType="VARCHAR" property="bookAuthor" />
+    <result column="book_pub" jdbcType="VARCHAR" property="bookPub" />
+    <result column="book_stock" jdbcType="INTEGER" property="bookStock" />
+    <result column="book_sort" jdbcType="INTEGER" property="bookSort" />
+    <result column="book_record" jdbcType="TIMESTAMP" property="bookRecord" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ssm.domain.BookInfo">
+    <result column="book_describe" jdbcType="LONGVARCHAR" property="bookDescribe" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    book_id, book_isbn, book_name, book_author, book_pub, book_stock, book_sort, book_record
+  </sql>
+  <sql id="Blob_Column_List">
+    book_describe
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from book
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.domain.BookInfo">
+    insert into book (book_id, book_isbn, book_name, 
+      book_author, book_pub, book_stock, 
+      book_sort, book_record, book_describe
+      )
+    values (#{bookId,jdbcType=INTEGER}, #{bookIsbn,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{bookAuthor,jdbcType=VARCHAR}, #{bookPub,jdbcType=VARCHAR}, #{bookStock,jdbcType=INTEGER}, 
+      #{bookSort,jdbcType=INTEGER}, #{bookRecord,jdbcType=TIMESTAMP}, #{bookDescribe,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.domain.BookInfo">
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="bookIsbn != null">
+        book_isbn,
+      </if>
+      <if test="bookName != null">
+        book_name,
+      </if>
+      <if test="bookAuthor != null">
+        book_author,
+      </if>
+      <if test="bookPub != null">
+        book_pub,
+      </if>
+      <if test="bookStock != null">
+        book_stock,
+      </if>
+      <if test="bookSort != null">
+        book_sort,
+      </if>
+      <if test="bookRecord != null">
+        book_record,
+      </if>
+      <if test="bookDescribe != null">
+        book_describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="bookIsbn != null">
+        #{bookIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null">
+        #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPub != null">
+        #{bookPub,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStock != null">
+        #{bookStock,jdbcType=INTEGER},
+      </if>
+      <if test="bookSort != null">
+        #{bookSort,jdbcType=INTEGER},
+      </if>
+      <if test="bookRecord != null">
+        #{bookRecord,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookDescribe != null">
+        #{bookDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.BookInfo">
+    update book
+    <set>
+      <if test="bookIsbn != null">
+        book_isbn = #{bookIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null">
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPub != null">
+        book_pub = #{bookPub,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStock != null">
+        book_stock = #{bookStock,jdbcType=INTEGER},
+      </if>
+      <if test="bookSort != null">
+        book_sort = #{bookSort,jdbcType=INTEGER},
+      </if>
+      <if test="bookRecord != null">
+        book_record = #{bookRecord,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookDescribe != null">
+        book_describe = #{bookDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssm.domain.BookInfo">
+    update book
+    set book_isbn = #{bookIsbn,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_pub = #{bookPub,jdbcType=VARCHAR},
+      book_stock = #{bookStock,jdbcType=INTEGER},
+      book_sort = #{bookSort,jdbcType=INTEGER},
+      book_record = #{bookRecord,jdbcType=TIMESTAMP},
+      book_describe = #{bookDescribe,jdbcType=LONGVARCHAR}
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.BookInfo">
+    update book
+    set book_isbn = #{bookIsbn,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_pub = #{bookPub,jdbcType=VARCHAR},
+      book_stock = #{bookStock,jdbcType=INTEGER},
+      book_sort = #{bookSort,jdbcType=INTEGER},
+      book_record = #{bookRecord,jdbcType=TIMESTAMP}
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -42,40 +42,40 @@
         </javaClientGenerator>
 
         <!-- table 指定每个表的生成策略-->
-        <table schema=""
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"
-               tableName="admintable" domainObjectName="AdminTable"/>
-        <table schema=""
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"
-               tableName="book" domainObjectName="BookInfo"/>
-        <table schema=""
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"
-               tableName="book_br" domainObjectName="BookManage"/>
-        <table schema=""
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"
-               tableName="book_sort" domainObjectName="BookSort"/>
-        <table schema=""
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"
-               tableName="usertable" domainObjectName="UserTable"/>
+<!--        <table schema=""-->
+<!--               enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false"-->
+<!--               tableName="admintable" domainObjectName="AdminTable"/>-->
+<!--        <table schema=""-->
+<!--               enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false"-->
+<!--               tableName="book" domainObjectName="BookInfo"/>-->
+<!--        <table schema=""-->
+<!--               enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false"-->
+<!--               tableName="book_br" domainObjectName="BookManage"/>-->
+<!--        <table schema=""-->
+<!--               enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false"-->
+<!--               tableName="book_sort" domainObjectName="BookSort"/>-->
+<!--        <table schema=""-->
+<!--               enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false"-->
+<!--               tableName="userinfo" domainObjectName="UserTable"/>-->
     </context>
 </generatorConfiguration>
