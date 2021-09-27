@@ -3,7 +3,11 @@ package com.ssm.service.impl;
 import com.ssm.dao.BookInfoMapper;
 import com.ssm.domain.BookInfo;
 import com.ssm.service.BookService;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author xxx
@@ -16,23 +20,33 @@ public class BookServiceImpl implements BookService {
     public BookServiceImpl(BookInfoMapper bookInfoMapper) {
         this.bookInfoMapper = bookInfoMapper;
     }
+
     @Override
-    public int addBook(BookInfo bookInfo){
-        return bookInfoMapper.insert(bookInfo);
+    public int addBook(BookInfo bookInfo) {
+        try {
+            return bookInfoMapper.insert(bookInfo);
+        } catch (DataAccessException e) {
+           return 0;
+        }
     }
 
     @Override
-    public int updateBook(BookInfo bookInfo){
+    public int updateBook(BookInfo bookInfo) {
         return bookInfoMapper.updateByPrimaryKey(bookInfo);
     }
 
     @Override
-    public int delBook(int bookId){
+    public int delBook(int bookId) {
         return bookInfoMapper.deleteByPrimaryKey(bookId);
     }
 
     @Override
-    public BookInfo selectByPrimaryKey(BookInfo bookInfo){
-        return bookInfoMapper.selectByPrimaryKey(bookInfo.getBookId());
+    public BookInfo selectByPrimaryKey(Integer bookId) {
+        return bookInfoMapper.selectByPrimaryKey(bookId);
+    }
+
+    @Override
+    public List<BookInfo> selectBy(Object param){
+        return bookInfoMapper.selectBy(param);
     }
 }

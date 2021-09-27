@@ -4,6 +4,9 @@ import com.ssm.domain.BookSort;
 
 import java.util.List;
 
+/**
+ * @author STARS
+ */
 public interface BookSortMapper {
     int deleteByPrimaryKey(Integer sortId);
 

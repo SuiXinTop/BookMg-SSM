@@ -1,12 +1,12 @@
 package com.ssm.controller;
 
-import com.fasterxml.jackson.databind.JsonSerializable;
 import com.ssm.domain.AdminTable;
 import com.ssm.service.AdminService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author xxx
@@ -21,16 +21,17 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    /**管理员登录
+    /**
+     * 管理员登录
      *
      * @param adminTable adminTable
-     * @return object
+     * @return status
      */
-    @RequestMapping(value = "/admin",method = RequestMethod.POST)
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
     @ResponseBody
-    public Object adminLogin(@RequestBody AdminTable adminTable){
-        Integer t= adminService.adminLogin(adminTable);
-        if(t==0){
+    public Object adminLogin(@RequestBody AdminTable adminTable) {
+        Integer t = adminService.adminLogin(adminTable);
+        if (t == 0) {
             return false;
         }
         return adminTable;

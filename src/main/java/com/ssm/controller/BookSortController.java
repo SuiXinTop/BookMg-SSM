@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ssm.domain.BookSort;
 import com.ssm.service.BookSortService;
-import com.ssm.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,14 +22,25 @@ public class BookSortController {
         this.bookSortService = bookSortService;
     }
 
+    /**
+     * 书类添加
+     *
+     * @param bookSort bookSort
+     * @return status
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Object addSort(@RequestBody BookSort bookSort) {
-//        return  bookSort;
         int t = bookSortService.addSort(bookSort);
         return t != 0;
     }
 
+    /**
+     * 书类更新
+     *
+     * @param bookSort bookSort
+     * @return status
+     */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Object updateSort(@RequestBody BookSort bookSort) {
@@ -38,6 +48,12 @@ public class BookSortController {
         return t != 0;
     }
 
+    /**
+     * 书类删除
+     *
+     * @param bookSort bookId
+     * @return status
+     */
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ResponseBody
     public Object delSort(@RequestBody BookSort bookSort) {
@@ -45,12 +61,42 @@ public class BookSortController {
         return t != 0;
     }
 
+    /**按书名查询ID
+     *
+     * @param sortName
+     * @return
+     */
+    @RequestMapping(value = "/selectIdByName", method = RequestMethod.GET)
+    @ResponseBody
+    public int selectIdByName(@RequestParam("sortName") String sortName) {
+        return 0;
+    }//TODO
+
+    /**
+     * 书类全览
+     *
+     * @param pageNum  pageNum
+     * @param pageSize pageSize
+     * @return PageInfo
+     */
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     @ResponseBody
-    public Object select(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                            @RequestParam(value = "pageSize",defaultValue = "10") int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public PageInfo<BookSort> select(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         List<BookSort> list = bookSortService.selectAll();
-        return new PageInfo<BookSort>(list,pageSize);
+        return new PageInfo<>(list, pageSize);
     }
+
+    /**
+     * 书类总数
+     *
+     * @return int
+     */
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    @ResponseBody
+    public int selectCount() {
+        return 0;
+    }//TODO
+
 }

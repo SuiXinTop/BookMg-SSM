@@ -2,6 +2,9 @@ package com.ssm.dao;
 
 import com.ssm.domain.BookManage;
 
+/**
+ * @author STARS
+ */
 public interface BookManageMapper {
     int deleteByPrimaryKey(Integer id);
 

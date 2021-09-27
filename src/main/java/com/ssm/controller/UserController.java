@@ -17,39 +17,99 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService){
-        this.userService=userService;
-    }
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    @ResponseBody
-    public Object login(@RequestBody UserTable userTable){
-      int t= userService.login(userTable);
-      if(t==0){
-          return false;
-      }
-      return userTable.getUserId();
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    /**
+     * 用户登录
+     *
+     * @param userTable userTable
+     * @return status
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Object register(@RequestBody UserTable userTable){
-        int t=userService.register(userTable);
-        if(t==0){
+    public Object login(@RequestBody UserTable userTable) {
+        int t = userService.login(userTable);
+        if (t == 0) {
             return false;
         }
         return userTable.getUserId();
     }
-    @RequestMapping(value = "/user/updateInfo",method = RequestMethod.POST)
+
+    /**
+     * 用户注册
+     *
+     * @param userTable userTable
+     * @return status
+     */
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public Object updateInfo(@RequestBody UserTable userTable){
-        int t=userService.updateInfo(userTable);
+    public Object register(@RequestBody UserTable userTable) {
+        int t = userService.register(userTable);
+        if (t == 0) {
+            return false;
+        }
+        return userTable.getUserId();
+    }
+
+    /**
+     * 需改用户信息
+     *
+     * @param userTable userTable
+     * @return status
+     */
+    @RequestMapping(value = "/user/updateInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateInfo(@RequestBody UserTable userTable) {
+        int t = userService.updateInfo(userTable);
         return t != 0;
     }
 
-    @RequestMapping(value = "/user/updatePassword",method = RequestMethod.POST)
+    /**
+     * 修改用户密码
+     *
+     * @param userTable userTable
+     * @return status
+     */
+    @RequestMapping(value = "/user/updatePassword", method = RequestMethod.POST)
     @ResponseBody
-    public Object updatePassword(@RequestBody UserTable userTable){
-        int t=userService.updatePassword(userTable);
+    public Object updatePassword(@RequestBody UserTable userTable) {
+        int t = userService.updatePassword(userTable);
         return t != 0;
     }
+
+    /**
+     * 查询用户信息By UserId || UserName
+     *
+     * @return pageInfo
+     */
+    @RequestMapping(value = "/user/selectByUserId", method = RequestMethod.POST)
+    @ResponseBody
+    public Object selectByUserId(String param) {
+        return 0;
+    }//TODO
+
+    /**
+     * 查询所有用户信息
+     *
+     * @return pageInfo
+     */
+    @RequestMapping(value = "/user/select", method = RequestMethod.POST)
+    @ResponseBody
+    public Object select() {
+        return 0;
+    }//TODO
+
+    /**
+     * 统计用户数量
+     *
+     * @return int
+     */
+    @RequestMapping(value = "/user/count", method = RequestMethod.GET)
+    @ResponseBody
+    public int selectCount() {
+        return 0;
+    }//TODO
+
 }

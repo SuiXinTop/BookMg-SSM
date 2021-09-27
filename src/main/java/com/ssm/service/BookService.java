@@ -2,12 +2,16 @@ package com.ssm.service;
 
 import com.ssm.domain.BookInfo;
 
+import java.util.List;
+
 public interface BookService {
-    public int addBook(BookInfo bookInfo);
+    int addBook(BookInfo bookInfo);
 
-    public int updateBook(BookInfo bookInfo);
+    int updateBook(BookInfo bookInfo);
 
-    public int delBook(int bookId);
+    int delBook(int bookId);
 
-    public BookInfo selectByPrimaryKey(BookInfo bookInfo);
+    BookInfo selectByPrimaryKey(Integer bookId);
+
+    List<BookInfo> selectBy(Object param);
 }
