@@ -3,10 +3,12 @@ package com.ssm.service.impl;
 import com.ssm.dao.BookInfoMapper;
 import com.ssm.domain.BookInfo;
 import com.ssm.service.BookService;
+import org.apache.ibatis.transaction.Transaction;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -14,6 +16,7 @@ import java.util.List;
  * @create 2021-09-26
  */
 @Service("bookService")
+@Transactional(rollbackFor = Exception.class)
 public class BookServiceImpl implements BookService {
     private final BookInfoMapper bookInfoMapper;
 
@@ -22,20 +25,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int addBook(BookInfo bookInfo) {
-        try {
-            return bookInfoMapper.insert(bookInfo);
-        } catch (DataAccessException e) {
-           return 0;
-        }
+        return bookInfoMapper.insert(bookInfo);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateBook(BookInfo bookInfo) {
         return bookInfoMapper.updateByPrimaryKey(bookInfo);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int delBook(int bookId) {
         return bookInfoMapper.deleteByPrimaryKey(bookId);
     }
@@ -46,7 +48,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookInfo> selectBy(Object param){
+    public List<BookInfo> selectBy(Object param) {
         return bookInfoMapper.selectBy(param);
     }
 }
