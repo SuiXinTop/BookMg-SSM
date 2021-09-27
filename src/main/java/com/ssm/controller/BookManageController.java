@@ -1,7 +1,9 @@
 package com.ssm.controller;
 
+import com.ssm.service.BookManageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/bookManage")
 public class BookManageController {
+    private final BookManageService bookManageService;
+    public BookManageController(BookManageService bookManageService){
+        this.bookManageService=bookManageService;
+    }
 
     /**
      * 查询所有记录
@@ -24,6 +30,16 @@ public class BookManageController {
         return null;
     }
 
+    /**查询用户借阅的数量
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selectCountByUserId")
+    @ResponseBody
+    public Object selectCountByUserId(int userId) {
+        // return mapper;
+        return null;
+    }
     /**
      * 查询个人所有记录
      *
@@ -31,7 +47,7 @@ public class BookManageController {
      */
     @RequestMapping(value = "/selectByUserId")
     @ResponseBody
-    public Object selectByUserId() {
+    public Object selectByUserId(int userId) {
         // return mapper;
         return null;
     }
@@ -48,22 +64,22 @@ public class BookManageController {
         return null;
     }
 
-    /**
-     * 发起借阅请求
+    /**发起借阅请求
      *
      * @param bookId
      * @param userId
      * @return
      */
 
-    @RequestMapping(value = "/borrowOn")
+    @RequestMapping(value = "/borrowOn",method = RequestMethod.POST)
     @ResponseBody
     public Object borrowOn(int bookId, int userId) {
-        //前端判定书的数量
-        //查询该用户借阅数量不多于三本
-        //插入一条预备借阅记录 bookTf为 申请中
-        //书的数量-1
-        return true;
+            try {
+                //前端判定书的数量
+                return bookManageService.borrowOn(bookId,userId);
+            }catch (Exception e){
+                return 0;
+            }
     }
 
     /**
@@ -74,7 +90,7 @@ public class BookManageController {
      */
     @RequestMapping(value = "/borrowOff")
     @ResponseBody
-    public Object borrowOn(int id) {
+    public Object borrowOff(int id) {
         //前端判定该书在申请中
         //根据id修改状态为已取消
         //书的数量+1

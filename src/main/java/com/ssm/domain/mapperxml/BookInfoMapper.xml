@@ -168,4 +168,10 @@
             book_record = #{bookRecord,jdbcType=TIMESTAMP}
         where book_id = #{bookId,jdbcType=INTEGER}
     </update>
+    <update id="updatePlusByPrimaryKey" parameterType="java.lang.Integer">
+        update book set book_stock = book_stock+1 where book_id = #{bookId,jdbcType=INTEGER}
+    </update>
+    <update id="updateDecByPrimaryKey" parameterType="java.lang.Integer">
+        update book set book_stock = book_stock-1 where book_id = #{bookId,jdbcType=INTEGER} and book_stock >0
+    </update>
 </mapper>

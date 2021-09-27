@@ -38,4 +38,8 @@ public interface BookInfoMapper {
     int updateByPrimaryKeyWithBLOBs(BookInfo record);
 
     int updateByPrimaryKey(BookInfo record);
+
+    int updatePlusByPrimaryKey(Integer bookId);
+
+    int updateDecByPrimaryKey(Integer bookId);
 }

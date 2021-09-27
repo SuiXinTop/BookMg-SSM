@@ -14,7 +14,10 @@ public interface BookManageMapper {
 
     BookManage selectByPrimaryKey(Integer id);
 
+    Integer selectCountByUserId(Integer userId);
+
     int updateByPrimaryKeySelective(BookManage record);
 
     int updateByPrimaryKey(BookManage record);
+
 }
