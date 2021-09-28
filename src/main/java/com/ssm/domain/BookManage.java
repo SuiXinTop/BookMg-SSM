@@ -24,7 +24,12 @@ public class BookManage implements Serializable {
     public BookManage() {
     }
 
-    public BookManage( Integer bookId, Integer userId, String bookTf) {
+    public BookManage(Integer id, String bookTf) {
+        this.id = id;
+        this.bookTf = bookTf;
+    }
+
+    public BookManage(Integer bookId, Integer userId, String bookTf) {
         this.userId = userId;
         this.bookId = bookId;
         this.bookTf = bookTf;

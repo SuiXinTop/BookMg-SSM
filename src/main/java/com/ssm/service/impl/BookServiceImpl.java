@@ -3,11 +3,8 @@ package com.ssm.service.impl;
 import com.ssm.dao.BookInfoMapper;
 import com.ssm.domain.BookInfo;
 import com.ssm.service.BookService;
-import org.apache.ibatis.transaction.Transaction;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 
@@ -16,7 +13,6 @@ import java.util.List;
  * @create 2021-09-26
  */
 @Service("bookService")
-@Transactional(rollbackFor = Exception.class)
 public class BookServiceImpl implements BookService {
     private final BookInfoMapper bookInfoMapper;
 

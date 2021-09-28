@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/bookManage")
 public class BookManageController {
     private final BookManageService bookManageService;
-    public BookManageController(BookManageService bookManageService){
-        this.bookManageService=bookManageService;
+
+    public BookManageController(BookManageService bookManageService) {
+        this.bookManageService = bookManageService;
     }
 
     /**
@@ -23,6 +24,7 @@ public class BookManageController {
      *
      * @return
      */
+
     @RequestMapping(value = "/select")
     @ResponseBody
     public Object select() {
@@ -32,23 +34,26 @@ public class BookManageController {
 
     /**查询用户借阅的数量
      *
+     * @param userId
      * @return
      */
+
     @RequestMapping(value = "/selectCountByUserId")
     @ResponseBody
-    public Object selectCountByUserId(int userId) {
-        // return mapper;
-        return null;
+    public int selectCountByUserId(int userId) {
+        return bookManageService.selectCountByUserId(userId);
     }
-    /**
-     * 查询个人所有记录
+
+    /**查询个人所有记录
      *
+     * @param userId
      * @return
      */
+
     @RequestMapping(value = "/selectByUserId")
     @ResponseBody
     public Object selectByUserId(int userId) {
-        // return mapper;
+        bookManageService.selectByUserId(userId);
         return null;
     }
 
@@ -64,98 +69,131 @@ public class BookManageController {
         return null;
     }
 
-    /**发起借阅请求
+    /**
+     * 发起借阅请求
      *
-     * @param bookId
-     * @param userId
-     * @return
+     * @param bookId bookId
+     * @param userId userId
+     * @return int
      */
 
-    @RequestMapping(value = "/borrowOn",method = RequestMethod.POST)
+
+    @RequestMapping(value = "/borrowOn", method = RequestMethod.POST)
     @ResponseBody
     public Object borrowOn(int bookId, int userId) {
-            try {
-                //前端判定书的数量
-                return bookManageService.borrowOn(bookId,userId);
-            }catch (Exception e){
-                return 0;
-            }
+        try {
+            //前端判定书的数量
+            return bookManageService.borrowOn(bookId, userId);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /**
      * 取消借阅请求
      *
-     * @param id
-     * @return
+     * @param id     id
+     * @param bookId bookId
+     * @return int
      */
+
     @RequestMapping(value = "/borrowOff")
     @ResponseBody
-    public Object borrowOff(int id) {
+    public Object borrowOff(int id, int bookId) {
         //前端判定该书在申请中
-        //根据id修改状态为已取消
-        //书的数量+1
-        return true;
+        try {
+            return bookManageService.borrowOff(id, bookId);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /**
      * 同意借阅请求
      *
-     * @param id
-     * @return
+     * @param id id
+     * @return int
      */
     @RequestMapping(value = "/borrowSuccess")
     @ResponseBody
     public Object borrowSuccess(int id) {
         //前端判定该书在申请中
-        //根据id修改bookTf为借阅中
-        return true;
+//        try {
+            return bookManageService.borrowSuccess(id);
+//        } catch (Exception e) {
+//            return 0;
+//        }
     }
 
     /**
      * 拒绝借阅请求
      *
-     * @param id
-     * @return
+     * @param id     id
+     * @param bookId bookId
+     * @return int
      */
     @RequestMapping(value = "/borrowFailure")
     @ResponseBody
-    public Object borrowFailure(int id) {
+    public Object borrowFailure(int id, int bookId) {
         //前端判定该书在申请中
-        //根据id修改bookTf为未通过
-        return true;
+        try {
+            return bookManageService.borrowFailure(id, bookId);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /**
      * 发起归还请求
+     *
+     * @param id id
+     * @return int
      */
+
     @RequestMapping(value = "/returnOn")
     @ResponseBody
     public Object returnOn(int id) {
         //前端判定该书在借阅中
-        //根据id修改bookTf为归还申请中
-        return true;
+        try {
+            return bookManageService.returnOn(id);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /**
      * 取消归还请求
+     *
+     * @param id id
+     * @return int
      */
+
     @RequestMapping(value = "/returnOff")
     @ResponseBody
     public Object returnOff(int id) {
         //前端判定该书在归还申请中
-        //根据id修改bookTf为借阅中
-        return true;
+        try {
+            return bookManageService.returnOff(id);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /**
      * 同意归还请求
+     *
+     * @param id     id
+     * @param bookId bookId
+     * @return int
      */
     @RequestMapping(value = "/returnSuccess")
     @ResponseBody
-    public Object returnSuccess(int id) {
+    public Object returnSuccess(int id, int bookId) {
         //前端判定该书在归还申请中
-        //根据id修改bookTf为已归还
-        //图书库存+1
-        return true;
+//        try {
+            return bookManageService.returnSuccess(id, bookId);
+//        } catch (Exception e) {
+//            return 0;
+//        }
     }
 }//todo

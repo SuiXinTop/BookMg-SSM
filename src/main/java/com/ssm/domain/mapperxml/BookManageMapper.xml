@@ -22,7 +22,7 @@
     <select id="selectCountByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select count(*)
         from book_br
-        where user_id = #{userId,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER} and (book_tf='借阅申请中' or book_tf = '借阅中')
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
@@ -99,8 +99,8 @@
             <if test="borrDate != null">
                 borr_date = #{borrDate,jdbcType=TIMESTAMP},
             </if>
-            <if test="facDate != null">
-                fac_date = #{facDate,jdbcType=TIMESTAMP},
+            <if test="facDate != null || bookTf == '已归还' ">
+                fac_date = now(),
             </if>
             <if test="excDate != null">
                 exc_date = #{excDate,jdbcType=TIMESTAMP},
