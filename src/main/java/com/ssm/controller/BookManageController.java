@@ -97,7 +97,7 @@ public class BookManageController {
      * @return int
      */
 
-    @RequestMapping(value = "/borrowOff")
+    @RequestMapping(value = "/borrowOff",method = RequestMethod.POST)
     @ResponseBody
     public Object borrowOff(int id, int bookId) {
         //前端判定该书在申请中
@@ -114,7 +114,7 @@ public class BookManageController {
      * @param id id
      * @return int
      */
-    @RequestMapping(value = "/borrowSuccess")
+    @RequestMapping(value = "/borrowSuccess", method = RequestMethod.POST)
     @ResponseBody
     public Object borrowSuccess(int id) {
         //前端判定该书在申请中
@@ -132,7 +132,7 @@ public class BookManageController {
      * @param bookId bookId
      * @return int
      */
-    @RequestMapping(value = "/borrowFailure")
+    @RequestMapping(value = "/borrowFailure", method = RequestMethod.POST)
     @ResponseBody
     public Object borrowFailure(int id, int bookId) {
         //前端判定该书在申请中
@@ -150,7 +150,7 @@ public class BookManageController {
      * @return int
      */
 
-    @RequestMapping(value = "/returnOn")
+    @RequestMapping(value = "/returnOn", method = RequestMethod.POST)
     @ResponseBody
     public Object returnOn(int id) {
         //前端判定该书在借阅中
@@ -168,7 +168,7 @@ public class BookManageController {
      * @return int
      */
 
-    @RequestMapping(value = "/returnOff")
+    @RequestMapping(value = "/returnOff", method = RequestMethod.POST)
     @ResponseBody
     public Object returnOff(int id) {
         //前端判定该书在归还申请中
@@ -186,14 +186,14 @@ public class BookManageController {
      * @param bookId bookId
      * @return int
      */
-    @RequestMapping(value = "/returnSuccess")
+    @RequestMapping(value = "/returnSuccess", method = RequestMethod.POST)
     @ResponseBody
     public Object returnSuccess(int id, int bookId) {
         //前端判定该书在归还申请中
-//        try {
+        try {
             return bookManageService.returnSuccess(id, bookId);
-//        } catch (Exception e) {
-//            return 0;
-//        }
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }//todo

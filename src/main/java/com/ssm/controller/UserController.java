@@ -3,10 +3,11 @@ package com.ssm.controller;
 import com.ssm.domain.UserTable;
 import com.ssm.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author xxx
@@ -51,6 +52,30 @@ public class UserController {
             return false;
         }
         return userTable.getUserId();
+    }
+
+    /**
+     * 图片存储
+     *
+     * @param file MultipartFile
+     * @param path  String
+     * @return Object
+     */
+    @RequestMapping(value = "/addImg", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addTitleImg(@RequestParam(value = "file") MultipartFile file,
+                              @RequestParam(value = "path") String path) {
+        String filePath = path + "/head.jpg";
+        File targetFile = new File("E:/SourcesServer" + filePath);
+        if (!file.isEmpty()) {
+            try {
+                file.transferTo(targetFile);
+                return "http://localhost:8090" + filePath;
+            } catch (IOException e) {
+                return "存储失败";
+            }
+        }
+        return 0;
     }
 
     /**

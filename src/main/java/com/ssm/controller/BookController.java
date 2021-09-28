@@ -6,7 +6,11 @@ import com.ssm.domain.BookInfo;
 import com.ssm.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,10 +37,40 @@ public class BookController {
     public Object addBook(@RequestBody BookInfo bookInfo) {
         try {
             return bookService.addBook(bookInfo);
-        }catch (Exception e){
+        } catch (Exception e) {
             return 0;
         }
 
+    }
+
+    /**图片存储
+     *
+     * @param files MultipartFile
+     * @param path String
+     * @return Object
+     */
+    @RequestMapping(value = "/addImg", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addTitleImg(@RequestParam(value = "file") MultipartFile[] files,
+                              @RequestParam(value = "path") String path) {
+        List<String> list = new ArrayList<>();
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                MultipartFile file = files[i];
+                String filePath = path + "/" + i + ".jpg";
+                File targetFile = new File("E:/SourcesServer" + filePath);
+                if (!file.isEmpty()) {
+                    try {
+                        file.transferTo(targetFile);
+                        list.add("http://localhost:8090" + filePath);
+                    } catch (IOException e) {
+                        return "存储第" + i + "张失败";
+                    }
+                }
+            }
+            return list;
+        }
+        return 0;
     }
 
     /**
