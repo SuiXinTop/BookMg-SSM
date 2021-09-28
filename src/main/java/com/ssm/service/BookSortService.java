@@ -8,11 +8,11 @@ import java.util.List;
  * @author STARS
  */
 public interface BookSortService {
-    public int addSort(BookSort bookSort);
+    int addSort(BookSort bookSort);
 
-    public int updateSort(BookSort bookSort);
+    int updateSort(BookSort bookSort);
 
-    public int delSort(Integer sortId);
+    int delSort(Integer sortId);
 
-    public List<BookSort> selectAll();
+    List<BookSort> selectAll();
 }

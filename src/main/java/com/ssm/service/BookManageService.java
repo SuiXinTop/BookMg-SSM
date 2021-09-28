@@ -4,25 +4,25 @@ package com.ssm.service;
  * @author STARS
  */
 public interface BookManageService {
-    public Object select();
+    Object select();
 
-    public int selectCountByUserId(int userId);
+    int selectCountByUserId(int userId);
 
-    public Object selectByUserId(int userId);
+    Object selectByUserId(int userId);
 
-    public Object selectByBookId();
+    Object selectByBookId();
 
-    public int borrowOn(int bookId, int userId);
+    int borrowOn(int bookId, int userId);
 
-    public Object borrowOff(int id, int bookId);
+    Object borrowOff(int id, int bookId);
 
-    public Object borrowSuccess(int id);
+    Object borrowSuccess(int id);
 
-    public Object borrowFailure(int id, int bookId);
+    Object borrowFailure(int id, int bookId);
 
-    public Object returnOn(int id);
+    Object returnOn(int id);
 
-    public Object returnOff(int id);
+    Object returnOff(int id);
 
-    public Object returnSuccess(int id, int bookId);
+    Object returnSuccess(int id, int bookId);
 }

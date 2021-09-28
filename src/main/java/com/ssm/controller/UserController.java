@@ -2,6 +2,7 @@ package com.ssm.controller;
 
 import com.ssm.domain.UserTable;
 import com.ssm.service.UserService;
+import com.ssm.service.UtilService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,9 +18,10 @@ import java.io.IOException;
 @RequestMapping("/")
 public class UserController {
     private final UserService userService;
-
-    public UserController(UserService userService) {
+    private final UtilService utilService;
+    public UserController(UserService userService,UtilService utilService) {
         this.userService = userService;
+        this.utilService=utilService;
     }
 
     /**
@@ -57,25 +59,15 @@ public class UserController {
     /**
      * 图片存储
      *
-     * @param file MultipartFile
+     * @param files MultipartFile
      * @param path  String
      * @return Object
      */
     @RequestMapping(value = "/addImg", method = RequestMethod.POST)
     @ResponseBody
-    public Object addTitleImg(@RequestParam(value = "file") MultipartFile file,
+    public Object addTitleImg(@RequestParam(value = "file") MultipartFile[] files,
                               @RequestParam(value = "path") String path) {
-        String filePath = path + "/head.jpg";
-        File targetFile = new File("E:/SourcesServer" + filePath);
-        if (!file.isEmpty()) {
-            try {
-                file.transferTo(targetFile);
-                return "http://localhost:8090" + filePath;
-            } catch (IOException e) {
-                return "存储失败";
-            }
-        }
-        return 0;
+        return utilService.addImg(files,path);
     }
 
     /**
