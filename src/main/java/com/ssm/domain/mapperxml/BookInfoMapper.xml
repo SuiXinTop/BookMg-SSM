@@ -41,6 +41,13 @@
             or book_pub LIKE concat('%',#{param},'%')
             or book_sort LIKE concat('%',#{param},'%')
     </select>
+    <select id="selectCountGroupBySort" resultType="java.util.HashMap">
+        select sort_name as 'Name' , count(book_sort) as 'count'
+        from book
+                 left join book_sort bs
+                           on book.book_sort = bs.sort_id
+        group by book_sort
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
         from book

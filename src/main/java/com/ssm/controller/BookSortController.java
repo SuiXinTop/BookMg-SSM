@@ -96,7 +96,7 @@ public class BookSortController {
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     @ResponseBody
     public int selectCount() {
-        return 0;
-    }//TODO
+        return bookSortService.selectCount();
+    }
 
 }

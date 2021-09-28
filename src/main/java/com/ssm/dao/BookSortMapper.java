@@ -18,6 +18,8 @@ public interface BookSortMapper {
 
     List<BookSort> selectAll();
 
+    Integer selectCount();
+
     int updateByPrimaryKeySelective(BookSort record);
 
     int updateByPrimaryKeyWithBLOBs(BookSort record);

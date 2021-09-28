@@ -7,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-
 /**
  * @author xxx
  * @create 2021-09-26
@@ -101,22 +98,22 @@ public class UserController {
      *
      * @return pageInfo
      */
-    @RequestMapping(value = "/user/selectByUserId", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/selectByIdOrName", method = RequestMethod.POST)
     @ResponseBody
-    public Object selectByUserId(String param) {
-        return 0;
-    }//TODO
+    public Object selectByUserIdOrUserName(String param) {
+        return userService.selectByUserIdOrUserName(param);
+    }
 
     /**
      * 查询所有用户信息
      *
      * @return pageInfo
      */
-    @RequestMapping(value = "/user/select", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/selectAll", method = RequestMethod.POST)
     @ResponseBody
-    public Object select() {
-        return 0;
-    }//TODO
+    public Object selectAll() {
+        return userService.selectAll();
+    }
 
     /**
      * 统计用户数量
@@ -126,7 +123,7 @@ public class UserController {
     @RequestMapping(value = "/user/count", method = RequestMethod.GET)
     @ResponseBody
     public int selectCount() {
-        return 0;
-    }//TODO
+        return userService.selectCount();
+    }
 
 }

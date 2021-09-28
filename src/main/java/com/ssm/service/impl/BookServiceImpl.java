@@ -6,6 +6,7 @@ import com.ssm.service.BookService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,6 +42,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookInfo selectByPrimaryKey(Integer bookId) {
         return bookInfoMapper.selectByPrimaryKey(bookId);
+    }
+
+    @Override
+    public List<HashMap<Object,Object>> selectCountGroupBySort(){
+        return bookInfoMapper.selectCountGroupBySort();
     }
 
     @Override

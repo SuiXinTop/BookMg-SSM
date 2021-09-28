@@ -6,6 +6,8 @@ import com.ssm.service.UserService;
 import com.ssm.util.SecurityUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author xxx
  * @create 2021-09-26
@@ -33,6 +35,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserTable selectInfo(Integer userId) {
         return userTableMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public Integer selectCount(){
+        return  userTableMapper.selectCount();
+    }
+
+    @Override
+    public List<UserTable> selectAll(){
+        return userTableMapper.selectAll();
+    }
+
+    @Override
+    public List<UserTable> selectByUserIdOrUserName(String param){
+        return userTableMapper.selectByUserIdOrUserName(param);
     }
 
     @Override

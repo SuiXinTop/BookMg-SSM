@@ -23,16 +23,24 @@ public class BookSortServiceImpl implements BookSortService {
     public int addSort(BookSort bookSort) {
         return bookSortMapper.insert(bookSort);
     }
+
     @Override
-    public int updateSort(BookSort bookSort){
+    public int updateSort(BookSort bookSort) {
         return bookSortMapper.updateByPrimaryKey(bookSort);
     }
+
     @Override
-    public int delSort(Integer sortId){
+    public int delSort(Integer sortId) {
         return bookSortMapper.deleteByPrimaryKey(sortId);
     }
+
     @Override
-    public List<BookSort> selectAll(){
-        return  bookSortMapper.selectAll();
+    public List<BookSort> selectAll() {
+        return bookSortMapper.selectAll();
+    }
+
+    @Override
+    public int selectCount() {
+        return bookSortMapper.selectCount();
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,9 +22,9 @@ public class BookController {
     private final BookService bookService;
     private final UtilService utilService;
 
-    public BookController(BookService bookService,UtilService utilService) {
+    public BookController(BookService bookService, UtilService utilService) {
         this.bookService = bookService;
-        this.utilService=utilService;
+        this.utilService = utilService;
     }
 
     /**
@@ -40,20 +41,20 @@ public class BookController {
         } catch (Exception e) {
             return 0;
         }
-
     }
 
-    /**图片存储
+    /**
+     * 图片存储
      *
      * @param files MultipartFile
-     * @param path String
+     * @param path  String
      * @return Object
      */
     @RequestMapping(value = "/addImg", method = RequestMethod.POST)
     @ResponseBody
     public Object addTitleImg(@RequestParam(value = "file") MultipartFile[] files,
                               @RequestParam(value = "path") String path) {
-        return utilService.addImg(files,path);
+        return utilService.addImg(files, path);
     }
 
     /**
@@ -94,6 +95,16 @@ public class BookController {
         return bookService.selectByPrimaryKey(bookId);
     }
 
+    /**按类查询书的数量 形成饼图
+     *
+     * @return HashMap
+     */
+    @RequestMapping(value = "/selectCountGroupBySort")
+    @ResponseBody
+    public Object selectCountGroupBySort() {
+        return bookService.selectCountGroupBySort();
+    }
+
     /**
      * 分页全局条件查询
      *
@@ -110,5 +121,5 @@ public class BookController {
         PageHelper.startPage(pageNum, pageSize);
         List<BookInfo> list = bookService.selectBy(param);
         return new PageInfo<>(list, pageSize);
-    }//TODO
+    }
 }

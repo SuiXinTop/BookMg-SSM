@@ -15,4 +15,6 @@ public interface BookSortService {
     int delSort(Integer sortId);
 
     List<BookSort> selectAll();
+
+    int selectCount();
 }

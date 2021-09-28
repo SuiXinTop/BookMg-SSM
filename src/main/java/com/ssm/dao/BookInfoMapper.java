@@ -2,6 +2,7 @@ package com.ssm.dao;
 
 import com.ssm.domain.BookInfo;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,6 +33,8 @@ public interface BookInfoMapper {
     BookInfo selectByPrimaryKey(Integer bookId);
 
     List<BookInfo> selectBy(Object param);
+
+    List<HashMap<Object,Object>> selectCountGroupBySort();
 
     int updateByPrimaryKeySelective(BookInfo record);
 
