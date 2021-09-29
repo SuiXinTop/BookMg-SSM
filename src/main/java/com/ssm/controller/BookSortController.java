@@ -61,16 +61,17 @@ public class BookSortController {
         return t != 0;
     }
 
-    /**按书名查询ID
+    /**
+     * 按书名查询ID
      *
-     * @param sortName
-     * @return
+     * @param sortName String
+     * @return int
      */
     @RequestMapping(value = "/selectIdByName", method = RequestMethod.GET)
     @ResponseBody
     public int selectIdByName(@RequestParam("sortName") String sortName) {
-        return 0;
-    }//TODO
+        return bookSortService.selectIdByName(sortName);
+    }
 
     /**
      * 书类全览

@@ -33,6 +33,11 @@
         select count(*)
         from book_sort
     </select>
+    <select id="selectIdByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select sort_id
+        from book_sort
+        where sort_name = #{sortId,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
         from book_sort

@@ -1,5 +1,8 @@
 package com.ssm.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * @author STARS
  */
@@ -11,6 +14,8 @@ public interface BookManageService {
     Object selectByUserId(int userId);
 
     Object selectByBookId();
+
+    List<HashMap<Object,Object>> selectByParam(String param);
 
     int borrowOn(int bookId, int userId);
 

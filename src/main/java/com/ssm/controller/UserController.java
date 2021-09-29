@@ -60,7 +60,7 @@ public class UserController {
      * @param path  String
      * @return Object
      */
-    @RequestMapping(value = "/addImg", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/addImg", method = RequestMethod.POST)
     @ResponseBody
     public Object addTitleImg(@RequestParam(value = "file") MultipartFile[] files,
                               @RequestParam(value = "path") String path) {
@@ -68,7 +68,7 @@ public class UserController {
     }
 
     /**
-     * 需改用户信息
+     * 修改用户信息
      *
      * @param userTable userTable
      * @return status
@@ -100,7 +100,7 @@ public class UserController {
      */
     @RequestMapping(value = "/user/selectByIdOrName", method = RequestMethod.POST)
     @ResponseBody
-    public Object selectByUserIdOrUserName(String param) {
+    public Object selectByUserIdOrUserName(@RequestHeader("authorization") String param) {
         return userService.selectByUserIdOrUserName(param);
     }
 

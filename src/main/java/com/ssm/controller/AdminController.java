@@ -31,9 +31,6 @@ public class AdminController {
     @ResponseBody
     public Object adminLogin(@RequestBody AdminTable adminTable) {
         Integer t = adminService.adminLogin(adminTable);
-        if (t == 0) {
-            return false;
-        }
-        return adminTable;
+        return t!=0;
     }
 }

@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * @author xxx
  * @create 2021-09-26
@@ -115,11 +112,10 @@ public class BookController {
      */
     @RequestMapping(value = "/selectBy", method = RequestMethod.GET)
     @ResponseBody
-    public PageInfo<BookInfo> selectBy(@RequestParam(value = "param", defaultValue = "") String param,
+    public Object selectBy(@RequestParam(value = "param", defaultValue = "") String param,
                                        @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<BookInfo> list = bookService.selectBy(param);
-        return new PageInfo<>(list, pageSize);
+        return new PageInfo<>(bookService.selectBy(param), pageSize);
     }
 }

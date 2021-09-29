@@ -7,6 +7,9 @@ import com.ssm.service.BookManageService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * @author xxx
  * @create 2021-09-26
@@ -48,8 +51,14 @@ public class BookManageServiceImpl implements BookManageService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    public List<HashMap<Object,Object>> selectByParam(String param) {
+        return bookManageMapper.selectByParam(param);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public int borrowOn(int bookId, int userId) {
-        int limit =3;
+        int limit = 3;
         BookManage bookManage = new BookManage(bookId, userId, "借阅申请中");
         //查询该用户正在借阅数量不多于三本
         if (bookManageMapper.selectCountByUserId(userId) >= limit) {

@@ -2,6 +2,9 @@ package com.ssm.dao;
 
 import com.ssm.domain.BookManage;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * @author STARS
  */
@@ -15,6 +18,8 @@ public interface BookManageMapper {
     BookManage selectByPrimaryKey(Integer id);
 
     Integer selectCountByUserId(Integer userId);
+
+    List<HashMap<Object,Object>> selectByParam(String param);
 
     int updateByPrimaryKeySelective(BookManage record);
 

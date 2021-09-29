@@ -17,4 +17,6 @@ public interface BookSortService {
     List<BookSort> selectAll();
 
     int selectCount();
+
+    int selectIdByName(String sortName);
 }

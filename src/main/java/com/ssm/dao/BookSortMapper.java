@@ -20,6 +20,8 @@ public interface BookSortMapper {
 
     Integer selectCount();
 
+    Integer selectIdByName(String sortName);
+
     int updateByPrimaryKeySelective(BookSort record);
 
     int updateByPrimaryKeyWithBLOBs(BookSort record);

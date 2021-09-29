@@ -8,57 +8,10 @@
   <sql id="Base_Column_List">
     adm_id, adm_password
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from admintable
-    where adm_id = #{admId,jdbcType=VARCHAR}
-  </select>
   <select id="selectByAll" parameterType="com.ssm.domain.AdminTable" resultType="java.lang.Integer">
     select
     count(*)
     from admintable
     where adm_id = #{admId,jdbcType=VARCHAR} and adm_password = #{admPassword,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from admintable
-    where adm_id = #{admId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.ssm.domain.AdminTable">
-    insert into admintable (adm_id, adm_password)
-    values (#{admId,jdbcType=VARCHAR}, #{admPassword,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.ssm.domain.AdminTable">
-    insert into admintable
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="admId != null">
-        adm_id,
-      </if>
-      <if test="admPassword != null">
-        adm_password,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="admId != null">
-        #{admId,jdbcType=VARCHAR},
-      </if>
-      <if test="admPassword != null">
-        #{admPassword,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.AdminTable">
-    update admintable
-    <set>
-      <if test="admPassword != null">
-        adm_password = #{admPassword,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where adm_id = #{admId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.AdminTable">
-    update admintable
-    set adm_password = #{admPassword,jdbcType=VARCHAR}
-    where adm_id = #{admId,jdbcType=VARCHAR}
-  </update>
 </mapper>

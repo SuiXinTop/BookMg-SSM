@@ -43,4 +43,9 @@ public class BookSortServiceImpl implements BookSortService {
     public int selectCount() {
         return bookSortMapper.selectCount();
     }
+
+    @Override
+    public int selectIdByName(String sortName){
+        return bookSortMapper.selectIdByName(sortName);
+    }
 }

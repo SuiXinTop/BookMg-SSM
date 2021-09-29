@@ -32,7 +32,7 @@ public interface BookInfoMapper {
 
     BookInfo selectByPrimaryKey(Integer bookId);
 
-    List<BookInfo> selectBy(Object param);
+    List<HashMap<Object,Object>> selectBy(Object param);
 
     List<HashMap<Object,Object>> selectCountGroupBySort();
 

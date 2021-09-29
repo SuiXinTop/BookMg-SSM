@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookInfo> selectBy(Object param) {
+    public List<HashMap<Object,Object>> selectBy(Object param) {
         return bookInfoMapper.selectBy(param);
     }
 }

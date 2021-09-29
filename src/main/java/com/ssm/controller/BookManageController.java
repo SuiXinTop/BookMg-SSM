@@ -1,10 +1,10 @@
 package com.ssm.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ssm.service.BookManageService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author xxx
@@ -20,53 +20,42 @@ public class BookManageController {
     }
 
     /**
-     * 查询所有记录
+     * 查询用户借阅的数量
      *
-     * @return
+     * @param userId int
+     * @return int
      */
-
-    @RequestMapping(value = "/select")
+    @RequestMapping(value = "/selectCountByUserId",method = RequestMethod.POST)
     @ResponseBody
-    public Object select() {
-        // return mapper;
-        return null;
-    }
-
-    /**查询用户借阅的数量
-     *
-     * @param userId
-     * @return
-     */
-
-    @RequestMapping(value = "/selectCountByUserId")
-    @ResponseBody
-    public int selectCountByUserId(int userId) {
+    public int selectCountByUserId(@RequestHeader("authorization") int userId) {
         return bookManageService.selectCountByUserId(userId);
     }
 
-    /**查询个人所有记录
+    /**
+     * 查询个人所有记录
      *
-     * @param userId
-     * @return
+     * @param userId int
+     * @return Object
      */
-
-    @RequestMapping(value = "/selectByUserId")
+    @RequestMapping(value = "/selectByUserId",method = RequestMethod.POST)
     @ResponseBody
-    public Object selectByUserId(int userId) {
-        bookManageService.selectByUserId(userId);
-        return null;
+    public Object selectByUserId(@RequestHeader("authorization") int userId) {
+        return bookManageService.selectByUserId(userId);
     }
 
     /**
-     * 查询某本书的所有记录
+     * 记录查找
      *
-     * @return
+     * @param param String
+     * @return PageInfo
      */
-    @RequestMapping(value = "/selectByBookId")
+    @RequestMapping(value = "/selectByParam",method = RequestMethod.GET)
     @ResponseBody
-    public Object selectByBookId() {
-        // return mapper;
-        return null;
+    public Object selectByParam(@RequestParam(value = "param",defaultValue = "") String param,
+                                @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageInfo<>(bookManageService.selectByParam(param), pageSize);
     }
 
     /**
@@ -76,11 +65,9 @@ public class BookManageController {
      * @param userId userId
      * @return int
      */
-
-
     @RequestMapping(value = "/borrowOn", method = RequestMethod.POST)
     @ResponseBody
-    public Object borrowOn(int bookId, int userId) {
+    public Object borrowOn(int bookId,@RequestHeader("authorization") int userId) {
         try {
             //前端判定书的数量
             return bookManageService.borrowOn(bookId, userId);
@@ -96,8 +83,7 @@ public class BookManageController {
      * @param bookId bookId
      * @return int
      */
-
-    @RequestMapping(value = "/borrowOff",method = RequestMethod.POST)
+    @RequestMapping(value = "/borrowOff", method = RequestMethod.POST)
     @ResponseBody
     public Object borrowOff(int id, int bookId) {
         //前端判定该书在申请中
@@ -119,7 +105,7 @@ public class BookManageController {
     public Object borrowSuccess(int id) {
         //前端判定该书在申请中
 //        try {
-            return bookManageService.borrowSuccess(id);
+        return bookManageService.borrowSuccess(id);
 //        } catch (Exception e) {
 //            return 0;
 //        }
@@ -149,7 +135,6 @@ public class BookManageController {
      * @param id id
      * @return int
      */
-
     @RequestMapping(value = "/returnOn", method = RequestMethod.POST)
     @ResponseBody
     public Object returnOn(int id) {
@@ -167,7 +152,6 @@ public class BookManageController {
      * @param id id
      * @return int
      */
-
     @RequestMapping(value = "/returnOff", method = RequestMethod.POST)
     @ResponseBody
     public Object returnOff(int id) {
@@ -196,4 +180,4 @@ public class BookManageController {
             return 0;
         }
     }
-}//todo
+}

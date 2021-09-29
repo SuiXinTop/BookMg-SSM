@@ -20,6 +20,10 @@
     <sql id="Blob_Column_List">
         book_describe
     </sql>
+
+    <sql id="Join_List">
+        book_id, book_isbn, book_name, sort_name, book_author, book_pub, book_stock,book_record,book_describe
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
@@ -28,21 +32,21 @@
         from book
         where book_id = #{bookId,jdbcType=INTEGER}
     </select>
-    <select id="selectBy" parameterType="java.lang.Object" resultMap="ResultMapWithBLOBs">
+    <select id="selectBy" parameterType="java.lang.Object" resultType="java.util.HashMap">
         select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
+        <include refid="Join_List"/>
         from book
-        where book_id LIKE concat('%',#{param},'%')
-            or book_isbn LIKE concat('%',#{param},'%')
-            or book_name LIKE concat('%',#{param},'%')
-            or book_author LIKE concat('%',#{param},'%')
-            or book_pub LIKE concat('%',#{param},'%')
-            or book_sort LIKE concat('%',#{param},'%')
+        left join book_sort
+        on book.book_sort = book_sort.sort_id
+        where book_id LIKE concat('%', #{param}, '%')
+        or book_isbn LIKE concat('%', #{param}, '%')
+        or book_name LIKE concat('%', #{param}, '%')
+        or book_author LIKE concat('%', #{param}, '%')
+        or book_pub LIKE concat('%', #{param}, '%')
+        or book_sort.sort_name LIKE concat('%', #{param}, '%')
     </select>
     <select id="selectCountGroupBySort" resultType="java.util.HashMap">
-        select sort_name as 'Name' , count(book_sort) as 'count'
+        select sort_name as 'name', count(book_sort) as 'count'
         from book
                  left join book_sort bs
                            on book.book_sort = bs.sort_id
@@ -176,9 +180,14 @@
         where book_id = #{bookId,jdbcType=INTEGER}
     </update>
     <update id="updatePlusByPrimaryKey" parameterType="java.lang.Integer">
-        update book set book_stock = book_stock+1 where book_id = #{bookId,jdbcType=INTEGER}
+        update book
+        set book_stock = book_stock + 1
+        where book_id = #{bookId,jdbcType=INTEGER}
     </update>
     <update id="updateDecByPrimaryKey" parameterType="java.lang.Integer">
-        update book set book_stock = book_stock-1 where book_id = #{bookId,jdbcType=INTEGER} and book_stock >0
+        update book
+        set book_stock = book_stock - 1
+        where book_id = #{bookId,jdbcType=INTEGER}
+          and book_stock > 0
     </update>
 </mapper>
