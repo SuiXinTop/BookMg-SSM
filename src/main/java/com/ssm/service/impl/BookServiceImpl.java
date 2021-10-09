@@ -1,5 +1,8 @@
 package com.ssm.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ssm.dao.BookInfoMapper;
 import com.ssm.domain.BookInfo;
 import com.ssm.service.BookService;
@@ -50,7 +53,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<HashMap<Object,Object>> selectBy(Object param) {
-        return bookInfoMapper.selectBy(param);
+    public Object selectBy(int pageNum,int pageSize,Object param) {
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageInfo<>(bookInfoMapper.selectBy(param),pageSize) ;
     }
 }

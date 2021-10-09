@@ -46,7 +46,7 @@
         or book_sort.sort_name LIKE concat('%', #{param}, '%')
     </select>
     <select id="selectCountGroupBySort" resultType="java.util.HashMap">
-        select sort_name as 'name', count(book_sort) as 'count'
+        select sort_name as 'name', count(book_sort) as 'value'
         from book
                  left join book_sort bs
                            on book.book_sort = bs.sort_id

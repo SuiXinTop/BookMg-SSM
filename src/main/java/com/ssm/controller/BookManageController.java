@@ -22,25 +22,39 @@ public class BookManageController {
     /**
      * 查询用户借阅的数量
      *
-     * @param userId int
+     * @param userName String
      * @return int
      */
-    @RequestMapping(value = "/selectCountByUserId",method = RequestMethod.POST)
+    @RequestMapping(value = "/selectCountByUserName",method = RequestMethod.POST)
     @ResponseBody
-    public int selectCountByUserId(@RequestHeader("authorization") int userId) {
-        return bookManageService.selectCountByUserId(userId);
+    public int selectCountByUserId(@RequestHeader("authorization") String userName) {
+        return bookManageService.selectCountByUserName(userName);
     }
 
     /**
      * 查询个人所有记录
      *
-     * @param userId int
+     * @param userName String
      * @return Object
      */
-    @RequestMapping(value = "/selectByUserId",method = RequestMethod.POST)
+    @RequestMapping(value = "/selectByUserName",method = RequestMethod.POST)
     @ResponseBody
-    public Object selectByUserId(@RequestHeader("authorization") int userId) {
-        return bookManageService.selectByUserId(userId);
+    public Object selectByUserId(@RequestHeader("authorization") String userName,
+                                 int status,
+                                 int pageNum,
+                                 int pageSize) {
+        String param;
+        switch(status){
+            case 0: param ="借阅已取消";break;
+            case 1: param ="借阅未通过";break;
+            case 2: param ="借阅审核中";break;
+            case 3: param ="借阅中";break;
+            case 4: param ="归还审核中";break;
+            case 5: param ="已归还审核中";break;
+            default: param="";break;
+        }
+        return bookManageService.selectByUserName(userName,param,pageNum,pageSize);
+
     }
 
     /**
@@ -61,16 +75,16 @@ public class BookManageController {
     /**
      * 发起借阅请求
      *
-     * @param bookId bookId
-     * @param userId userId
+     * @param bookId int
+     * @param userName Sting
      * @return int
      */
     @RequestMapping(value = "/borrowOn", method = RequestMethod.POST)
     @ResponseBody
-    public Object borrowOn(int bookId,@RequestHeader("authorization") int userId) {
+    public Object borrowOn(int bookId,@RequestHeader("authorization") String userName) {
         try {
             //前端判定书的数量
-            return bookManageService.borrowOn(bookId, userId);
+            return bookManageService.borrowOn(bookId, userName);
         } catch (Exception e) {
             return 0;
         }

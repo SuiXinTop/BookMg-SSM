@@ -16,5 +16,5 @@ public interface BookService {
 
     List<HashMap<Object,Object>> selectCountGroupBySort();
 
-    List<HashMap<Object,Object>> selectBy(Object param);
+    Object selectBy(int pageNum,int pageSize,Object param);
 }

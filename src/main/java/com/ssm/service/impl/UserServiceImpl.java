@@ -33,6 +33,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Integer userNameVery(String userName){
+        return userTableMapper.selectCountByName(userName);
+    }
+
+
+    @Override
     public UserTable selectInfo(Integer userId) {
         return userTableMapper.selectByPrimaryKey(userId);
     }

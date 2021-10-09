@@ -34,7 +34,7 @@ public class UserController {
         if (t == 0) {
             return false;
         }
-        return userTable.getUserId();
+        return userTable.getUserName();
     }
 
     /**
@@ -102,6 +102,14 @@ public class UserController {
     @ResponseBody
     public Object selectByUserIdOrUserName(@RequestHeader("authorization") String param) {
         return userService.selectByUserIdOrUserName(param);
+    }
+    /**查询用户名是否被使用
+     *
+     */
+    @RequestMapping(value = "/user/userNameVery", method = RequestMethod.POST)
+    @ResponseBody
+    public Integer userNameVery(String userName) {
+        return userService.userNameVery(userName);
     }
 
     /**

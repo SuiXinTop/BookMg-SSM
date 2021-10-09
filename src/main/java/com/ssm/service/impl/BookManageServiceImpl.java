@@ -1,7 +1,10 @@
 package com.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ssm.dao.BookInfoMapper;
 import com.ssm.dao.BookManageMapper;
+import com.ssm.dao.UserTableMapper;
 import com.ssm.domain.BookManage;
 import com.ssm.service.BookManageService;
 import org.springframework.stereotype.Service;
@@ -16,50 +19,44 @@ import java.util.List;
  */
 @Service("bookManageService")
 public class BookManageServiceImpl implements BookManageService {
+    private final UserTableMapper userTableMapper;
     private final BookInfoMapper bookInfoMapper;
     private final BookManageMapper bookManageMapper;
 
-    public BookManageServiceImpl(BookInfoMapper bookInfoMapper, BookManageMapper bookManageMapper) {
+    public BookManageServiceImpl(BookInfoMapper bookInfoMapper, BookManageMapper bookManageMapper, UserTableMapper userTableMapper) {
+        this.userTableMapper = userTableMapper;
         this.bookInfoMapper = bookInfoMapper;
         this.bookManageMapper = bookManageMapper;
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Object select() {
-
-        return 0;
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int selectCountByUserId(int userId) {
+    public int selectCountByUserName(String userName) {
+        int userId = userTableMapper.selectIdByName(userName);
         return bookManageMapper.selectCountByUserId(userId);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Object selectByUserId(int userId) {
-        return 0;
+    public Object selectByUserName(String userName,String status,int pageNum,int pageSize) {
+        int userId = userTableMapper.selectIdByName(userName);
+        BookManage bookManage = new BookManage();
+        bookManage.setUserId(userId);
+        bookManage.setBookTf(status);
+
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageInfo<>(bookManageMapper.selectByUserIdAndStatus(bookManage), pageSize);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Object selectByBookId() {
-        return 0;
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public List<HashMap<Object,Object>> selectByParam(String param) {
+    public List<HashMap<Object, Object>> selectByParam(String param) {
         return bookManageMapper.selectByParam(param);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int borrowOn(int bookId, int userId) {
+    public int borrowOn(int bookId, String userName) {
+        int userId = userTableMapper.selectIdByName(userName);
         int limit = 3;
-        BookManage bookManage = new BookManage(bookId, userId, "借阅申请中");
+        BookManage bookManage = new BookManage(bookId, userId, "借阅审核中");
         //查询该用户正在借阅数量不多于三本
         if (bookManageMapper.selectCountByUserId(userId) >= limit) {
             throw new RuntimeException();
@@ -110,7 +107,7 @@ public class BookManageServiceImpl implements BookManageService {
     @Transactional(rollbackFor = Exception.class)
     public Object returnOn(int id) {
         //根据id修改bookTf为归还申请中
-        BookManage bookManage = new BookManage(id, "归还申请中");
+        BookManage bookManage = new BookManage(id, "归还审核中");
         bookManageMapper.updateByPrimaryKeySelective(bookManage);
         return 1;
     }

@@ -1,6 +1,7 @@
 package com.ssm.dao;
 
 import com.ssm.domain.BookManage;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ public interface BookManageMapper {
     BookManage selectByPrimaryKey(Integer id);
 
     Integer selectCountByUserId(Integer userId);
+
+    List<HashMap<Object,Object>> selectByUserIdAndStatus(BookManage record);
 
     List<HashMap<Object,Object>> selectByParam(String param);
 

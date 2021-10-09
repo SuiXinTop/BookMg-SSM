@@ -22,12 +22,22 @@
     <select id="selectByAll" parameterType="com.ssm.domain.UserTable" resultType="java.lang.Integer">
         select count(*)
         from userinfo
-        where user_id = #{userId,jdbcType=VARCHAR}
+        where user_name = #{userName,jdbcType=VARCHAR}
           and user_password = #{userPassword,jdbcType=VARCHAR}
+    </select>
+    <select id="selectIdByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select user_id
+        from userinfo
+        where user_name = #{userName,jdbcType=VARCHAR}
     </select>
     <select id="selectCount" resultType="java.lang.Integer">
         select count(*)
         from userinfo
+    </select>
+    <select id="selectCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*)
+        from userinfo
+        where user_name = #{userName}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select

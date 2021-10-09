@@ -12,6 +12,8 @@ public interface UserService {
 
     Integer register(UserTable userTable);
 
+    Integer userNameVery(String userName);
+
     UserTable selectInfo(Integer userId);
 
     Integer selectCount();

@@ -16,6 +16,10 @@ public interface UserTableMapper {
 
     UserTable selectByPrimaryKey(Integer userId);
 
+    Integer selectIdByName(String userName);
+
+    Integer selectCountByName(String userName);
+
     Integer selectByAll(UserTable record);
 
     List<UserTable> selectByUserIdOrUserName(String param);

@@ -23,7 +23,26 @@
         select count(*)
         from book_br
         where user_id = #{userId,jdbcType=INTEGER}
-          and book_tf in ('借阅申请中', '借阅中')
+          and book_tf in ('借阅审核中', '借阅中')
+    </select>
+    <select id="selectByUserIdAndStatus" parameterType="com.ssm.domain.BookManage" resultType="java.util.HashMap">
+        select id,
+               b.book_id,
+               user_id,
+               book_isbn,
+               book_name,
+               book_author,
+               sort_name,
+               book_stock,
+               borr_date,
+               fac_date,
+               exc_date,
+               book_tf
+        from book_br
+                 left join book b on b.book_id = book_br.book_id
+                 left join book_sort bs on b.book_sort = bs.sort_id
+        where book_br.user_id = #{userId}
+          and book_br.book_tf LIKE concat('%',#{bookTf},'%')
     </select>
     <select id="selectByParam" parameterType="java.lang.String" resultType="java.util.HashMap">
         select id,

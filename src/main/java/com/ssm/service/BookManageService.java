@@ -7,17 +7,14 @@ import java.util.List;
  * @author STARS
  */
 public interface BookManageService {
-    Object select();
 
-    int selectCountByUserId(int userId);
+    int selectCountByUserName(String userName);
 
-    Object selectByUserId(int userId);
-
-    Object selectByBookId();
+    Object selectByUserName(String userName,String status,int pageNum,int pageSize);
 
     List<HashMap<Object,Object>> selectByParam(String param);
 
-    int borrowOn(int bookId, int userId);
+    int borrowOn(int bookId, String userName);
 
     Object borrowOff(int id, int bookId);
 

@@ -115,7 +115,7 @@ public class BookController {
     public Object selectBy(@RequestParam(value = "param", defaultValue = "") String param,
                                        @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return new PageInfo<>(bookService.selectBy(param), pageSize);
+
+        return bookService.selectBy(pageNum,pageSize,param);
     }
 }
